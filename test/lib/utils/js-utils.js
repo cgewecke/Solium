@@ -24,6 +24,10 @@ describe ('Test jsUtils functions', function () {
 
 		jsUtils.should.have.ownProperty ('toFunction');
 		jsUtils.toFunction.should.be.type ('function');
+
+		jsUtils.should.have.ownProperty ('addPragma');
+		jsUtils.toFunction.should.be.type ('function');
+
 		done ();
 	});
 
@@ -78,4 +82,19 @@ describe ('Test jsUtils functions', function () {
 		Solium.reset();
 		done ();
 	});
+
+	it('addPragma: should correctly prepend a pragma statement to a solidity contract or library', function (done) {
+		var addPragma = jsUtils.addPragma;
+		var contract = 'contract Abc { }'
+		var expected = 'pragma solidity ^0.4.3;\n\n\n' + contract;
+			
+		var errors = Solium.lint(expected, userConfig);
+		errors.constructor.name.should.equal ('Array');
+		errors.length.should.equal (0);
+		addPragma(contract).should.equal(expected);
+
+		Solium.reset();
+		done ();
+	});
+
 });
