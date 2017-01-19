@@ -6,7 +6,9 @@
 'use strict';
 
 var Solium = require ('../../../../lib/solium');
+var jsUtils = require ('../../../../lib/utils/js-utils')
 
+var toFunction = jsUtils.toFunction;
 var userConfig = {
   "custom-rules-filename": null,
   "rules": {
@@ -26,6 +28,8 @@ describe ('[RULE] no-unused-vars: Acceptances', function () {
 			'mapping (address => uint) x; function foo () returns (mapping) { return x; }'
 		];
 		var errors;
+
+		code = code.map(function(item){return toFunction(item)});
 
 		errors = Solium.lint (code [0], userConfig);
 		errors.constructor.name.should.equal ('Array');
@@ -69,6 +73,8 @@ describe ('[RULE] no-unused-vars: Rejections', function () {
 			'mapping (address => uint) x;'
 		];
 		var errors;
+
+		code = code.map(function(item){return toFunction(item)});
 
 		errors = Solium.lint (code [0], userConfig);
 		errors.constructor.name.should.equal ('Array');

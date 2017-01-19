@@ -45,7 +45,7 @@ describe ('Test jsUtils functions', function () {
 		var toContract = jsUtils.toContract;
 		var statement = 'uint x = 1;'
 		var expected = 
-			'pragma solidity ^0.4.3;\n\n' +
+			'pragma solidity ^0.4.3;\n\n\n' +
 			'contract Wrap {\n' +
 			'\t' + statement + '\n' +
 			'}';
@@ -63,7 +63,7 @@ describe ('Test jsUtils functions', function () {
 		var toFunction = jsUtils.toFunction;
 		var statement = 'uint x = 1;'
 		var expected = 
-			'pragma solidity ^0.4.3;\n\n' +
+			'pragma solidity ^0.4.3;\n\n\n' +
 			'contract Wrap {\n' +
 			'\tfunction wrap() {\n' + 
 			'\t\t' + statement + '\n' +

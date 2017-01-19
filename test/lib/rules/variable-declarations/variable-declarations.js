@@ -6,7 +6,9 @@
 'use strict';
 
 var Solium = require ('../../../../lib/solium');
+var jsUtils = require ('../../../../lib/utils/js-utils')
 
+var toFunction = jsUtils.toFunction;
 var userConfig = {
   "custom-rules-filename": null,
   "rules": {
@@ -26,6 +28,8 @@ describe ('[RULE] variable-declarations: Rejections', function () {
 		];
 		var errors;
 
+		code = code.map(function(item){return toFunction(item)});
+		
 		errors = Solium.lint (code [0], userConfig);
 		errors.constructor.name.should.equal ('Array');
 		errors.length.should.equal (3);
