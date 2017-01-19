@@ -83,7 +83,7 @@ describe ('Test jsUtils functions', function () {
 		done ();
 	});
 
-	it('addPragma: should correctly prepend a pragma statement to a solidity contract or library', function (done) {
+	it('addPragma: should correctly pre-pend a pragma statement to a solidity contract or library', function (done) {
 		var addPragma = jsUtils.addPragma;
 		var contract = 'contract Abc { }'
 		var expected = 'pragma solidity ^0.4.3;\n\n\n' + contract;
